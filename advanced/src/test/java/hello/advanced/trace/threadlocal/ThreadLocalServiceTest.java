@@ -11,13 +11,13 @@ public class ThreadLocalServiceTest {
 
     @Test
     void threadLocal() {
-        log.info("main start");
+        log.info("threadLocal main start");
 
         Runnable userA = () -> {
-            service.logic("userA");
+            service.logic("김치볶음밥");
         };
         Runnable userB = () -> {
-            service.logic("userB");
+            service.logic("짜장면");
         };
 
         Thread threadA = new Thread(userA);
@@ -33,7 +33,7 @@ public class ThreadLocalServiceTest {
 
         sleep(2000);
 
-        log.info("main exit");
+        log.info("threadLocal main exit");
     }
 
     private void sleep(int millis) {

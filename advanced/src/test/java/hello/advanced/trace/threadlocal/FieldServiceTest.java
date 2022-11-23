@@ -12,20 +12,26 @@ public class FieldServiceTest {
     @Test
     void field() {
         log.info("main start");
+
         Runnable userA = () -> {
-            fieldService.logic("userA");
+            fieldService.logic("김치볶음밥");
         };
         Runnable userB = () -> {
-            fieldService.logic("userB");
+            fieldService.logic("짜장면");
         };
+
         Thread threadA = new Thread(userA);
         threadA.setName("thread-A");
         Thread threadB = new Thread(userB);
         threadB.setName("thread-B");
+
         threadA.start(); // A실행
-        sleep(2000); // 동시성 문제 발생 X
-        // sleep(100); // 동시성 문제 발생 O
+
+//        sleep(2000); // 동시성 문제 발생 X
+         sleep(100); // 동시성 문제 발생 O
+
         threadB.start(); // B실행
+
         sleep(3000); // 메인 쓰레드 종료 대기
         log.info("main exit");
     }

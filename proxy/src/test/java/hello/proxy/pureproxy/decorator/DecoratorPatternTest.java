@@ -10,8 +10,16 @@ public class DecoratorPatternTest {
     @Test
     void noDecorator() {
         Component realComponent = new RealComponent();
-        DecoratorPatternClient client = new
-                DecoratorPatternClient(realComponent);
+        DecoratorPatternClient client = new DecoratorPatternClient(realComponent);
+        client.execute();
+    }
+
+    @Test
+    void decorator1() {
+        // client -> messageDecorator -> realComponent 의존관계
+        Component realComponent = new RealComponent();
+        Component messageDecorator = new MessageDecorator(realComponent);
+        DecoratorPatternClient client = new DecoratorPatternClient(messageDecorator);
         client.execute();
     }
 }

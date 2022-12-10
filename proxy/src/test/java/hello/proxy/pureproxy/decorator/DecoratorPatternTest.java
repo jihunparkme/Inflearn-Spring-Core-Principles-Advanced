@@ -16,10 +16,20 @@ public class DecoratorPatternTest {
 
     @Test
     void decorator1() {
-        // client -> messageDecorator -> realComponent 의존관계
+        // client -> messageDecorator -> realComponent 객체 의존
         Component realComponent = new RealComponent();
         Component messageDecorator = new MessageDecorator(realComponent);
         DecoratorPatternClient client = new DecoratorPatternClient(messageDecorator);
+        client.execute();
+    }
+
+    @Test
+    void decorator2() {
+        // client -> timeDecorator -> messageDecorator -> realComponent 객체 의존
+        Component realComponent = new RealComponent();
+        Component messageDecorator = new MessageDecorator(realComponent);
+        Component timeDecorator = new TimeDecorator(messageDecorator);
+        DecoratorPatternClient client = new DecoratorPatternClient(timeDecorator);
         client.execute();
     }
 }
